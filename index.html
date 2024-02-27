@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/befkLgvqBbU?si=k8mbDnp3li1QInb7&amp;start=112&autoplay=1&rel=0&modestbranding=0&controls=1&showinfo=1"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+
+        <iframe src="https://drive.google.com/file/d/1uQgPm0NpJM0TWdV9D-dMueZZ2PVUiCaP/preview" width="640" height="480" allow="autoplay"></iframe>
+        <video class="gdriveVideo" preload="auto" controls>
+            <source src="https://drive.google.com/uc?export=download&id=1uQgPm0NpJM0TWdV9D-dMueZZ2PVUiCaP" type='video/mp4'>
+         </video>
+    </main>
+
+    <script>
+        setTimeout(() => {
+            console.log('opop');
+            const iframe = document.getElementById('yt');
+            console.log(iframe);
+            iframe.click()
+            iframe.contentWindow.postMessage(56777, 'https://www.youtube.com');
+        }, 1000);
+
+        window.addEventListener('message', event => {
+            console.log(event)
+            // IMPORTANT: check the origin of the data!
+            if (event.origin === 'http://127.0.0.1:5500') {
+                // The data was sent from your site.
+                // Data sent with postMessage is stored in event.data:
+                console.log(event.data);
+            } else {
+                // The data was NOT sent from your site!
+                // Be careful! Do not use it. This else branch is
+                // here just for clarity, you usually shouldn't need it.
+                return;
+            }
+        });
+    </script>
 </body>
+
 </html>
